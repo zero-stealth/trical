@@ -1,0 +1,80 @@
+@import "./stylesheet.css";
+
+@media screen {
+    
+* {
+  /* default-colors  */
+  --text-color: rgb(49, 49, 49);
+  --star-color: rgb(254, 229, 6);
+  --dark-color: rgb(218, 218, 218);
+  --light-color: rgb(244, 244, 244);
+  --primary-color: rgb(138, 118, 255);
+  --secondary-color: rgb(255, 110, 78);
+  --background-color: rgb(255, 255, 255);
+  --drop-shadow:-3px 5px 15px var(--text-color);
+  --background-shadow:0 0 0 10000px rgba(10, 10, 12, 0.5);
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+    font-family:'Segoe UI';
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+
+input {
+    outline: none;
+}
+
+.close {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+}
+
+button {
+  border: none;
+  outline: none;
+  border-radius: 12px;
+}
+
+.open {
+height: fit-content;
+transition: all 0.5s ease 0s;
+-webkit-transition: all 0.5s ease 0s;
+box-shadow: var(--background-shadow);
+
+}
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  
+  }
+  
+  /* ipad pro screens & laptop */
+  @media only screen and (min-width: 49em) and (max-width: 64em) {
+  }
+  
+  /* large screens : Desktop and 4k screens */
+  
+  @media only screen and (min-width: 64.063em) and (max-width: 90em) {
+  }
+  
+  /* 5k screens and above */
+  @media only screen and (min-width: 91em) {
+  }
+  

@@ -1,0 +1,70 @@
+@media screen {
+  .welcome-container {
+    height: 100%;
+    display: flex;
+    background-color: var(--background-color);
+  }
+
+  .welcome-wrapper {
+    flex: 100%;
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .auth-wrapper {
+    display: none;
+  }
+
+  .mobile-show {
+    display: flex;
+    padding: 20px 30px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .ads-txt h1 {
+    width: 70%;
+    font-size: 1.6rem;
+    color: var(--background-color);
+  }
+
+  .welcome-btn-container {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    text-align: center;
+    flex-direction: column;
+    color: var(--background-color);
+  }
+
+  .welcome-btn {
+    height: 50px;
+    font-size: 1.2rem;
+    color: var(--background-color);
+    background-color: var(--primary-color);
+  }
+
+
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .welcome-wrapper {
+    flex: 50%;
+  }
+
+  .auth-wrapper {
+    flex: 50%;
+    display: flex;
+  }
+
+  .mobile-show, .pop-w {
+    display: none;
+  }
+
+}

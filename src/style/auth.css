@@ -1,0 +1,131 @@
+@media screen {
+  .auth-container {
+    height: 100%;
+  }
+
+  .auth-form {
+    gap: 12px;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .auth-info {
+    padding-top: 10px;
+  }
+
+  .auth-info h1 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+  }
+
+  .auth-info span {
+    font-size: 0.9rem;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .auth-wrapper-w {
+    gap: 8px;
+    display: flex;
+    padding: 5px 0;
+    flex-direction: column;
+    text-transform: capitalize;
+  }
+
+  .auth-input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--dark-color);
+  }
+
+  .auth-input:hover,
+  .auth-input:active {
+    border: 1px solid var(--primary-color);
+  }
+
+  .error-msg {
+    padding: 5px;
+    display: flex;
+    font-size: 1rem;
+    align-items: center ;
+    text-align: center;
+    justify-content: center;
+    color: var(--secondary-color);
+  }
+
+  .forgot-p {
+    display: flex;
+    font-size: 0.8rem;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+
+  .forgot-p a span {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+
+  .btn-auth {
+    gap: 4px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .btn-auth span {
+    gap: 2px;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-auth a {
+    color: var(--primary-color);
+  }
+
+  .btn-auth-c {
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    color: var(--background-color);
+    background-color: var(--primary-color);
+  }
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .auth-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .auth-form {
+    width: 60%;
+    height: fit-content;
+  }
+
+  .auth-info h1 {
+    font-size: 1.8rem;
+  }
+
+  .auth-info span {
+    font-size: 1rem;
+  }
+
+  .btn-auth-c {
+    height: 50px;
+    font-size: 1rem;
+  }
+}
