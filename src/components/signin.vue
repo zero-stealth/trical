@@ -8,11 +8,6 @@ const password = ref('');
 const email = ref('');
 const errorMsg = ref();
 
-const setLogIn = () => {
-    AuthStore.logIn();
-};
-
-
 const submit = () => {
   if (username.value.length < 4 ) {
     errorMsg.value = 'username must be at least 4 characters long'
@@ -75,7 +70,7 @@ const reset = () => {
       </div>
       <div class="btn-auth">
         <button type="submit" class="btn-auth-c"  @keyup.enter="submit">Create an account</button>
-        <span>Already have an account?<a href="#" @click="setLogIn">Login</a></span>
+        <span>Already have an account?<a href="#" @click="AuthStore.toggleAuthPage()">Login</a></span>
       </div>
     </form>
   </div>

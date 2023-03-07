@@ -7,10 +7,6 @@ const username = ref('');
 const newPassword = ref('');
 const errorMsg = ref();
 
-const setSignIn = () => {
-    AuthStore.logIn();
-};
-
 const submit = () => {
   if (username.value == '') {
     errorMsg.value = 'Write something dummy';
@@ -53,7 +49,7 @@ const reset = () => {
       </div>
       <div class="btn-auth">
         <button type="submit" class="btn-auth-c" @keyup.enter="submit">Reset</button>
-        <span>Don't have an account?<a href="#" @click="setSignIn">Signin</a></span>
+        <span>Don't have an account?<a href="#" @click="AuthStore.toggleResetPage()">Login</a></span>
       </div>
     </form>
 </div>

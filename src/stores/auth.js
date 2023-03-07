@@ -1,27 +1,44 @@
-import { ref } from 'vue'
+import { ref, onMounted, } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', () => {
 
   const isAuthenticated = ref(false);
-  // set state for welcome page
-  const isLogIn = ref(false);
-  const resetAccount = ref(false);
+  const authPage = ref(false);
+  const resetPage = ref(false);
+  const timeOut = ref(3000);
 
-  //toggle state
-  const logIn = () => {
-    isLogIn.value = !isLogIn.value;
+
+  //ensures that the splash screen is not displayed after login
+  onMounted(() => {
+    switch (isAuthenticated.value) {
+      case false:
+        timeOut.value = 3000;
+        break;
+      case true:
+        timeOut.value = 0;
+        break;
+      default:
+        break;
+    }
+
+  })
+
+    //change state
+    const toggleisAuthenticated = () => {
+      isAuthenticated.value = !isAuthenticated.value;
+    }
+  //change state
+  const toggleResetPage = () => {
+    resetPage.value = !resetPage.value;
   }
 
-  const Authenticate = () => {
-    isAuthenticated.value = true;
+  //change state
+  const toggleAuthPage = () => {
+    authPage.value = !authPage.value;
   }
 
-  //toggle state
-  const reset = () => {
-    resetAccount.value = !resetAccount.value
+  return {
+    timeOut, toggleisAuthenticated, toggleResetPage, isAuthenticated, toggleAuthPage, authPage, resetPage
   }
-
-
-  return { isLogIn, logIn, reset, resetAccount, isAuthenticated, Authenticate }
 })
