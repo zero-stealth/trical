@@ -15,7 +15,6 @@ watchEffect(() => {
       setTimeout(() => {
         router.push({ name: "Welcome" });
       }, interval.value);
-      console.log(interval.value)
       break;
       case 0:
         router.push({ name: "Welcome" });

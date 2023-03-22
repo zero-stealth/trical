@@ -1,0 +1,20 @@
+@media screen { 
+    .home {
+        height: 100%;
+    }
+
+    .home-container {
+        gap:20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  
+
+}

@@ -1,0 +1,157 @@
+@media screen {
+  .deal-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .deal-wrapper {
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .deal-title {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    justify-content: space-between;
+  }
+
+  .deal-title h1 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .deal-title span {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .card-template {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
+  }
+
+  .fav-icon {
+    height: 24px;
+    width: 24px;
+    fill: var(--secondary-color);
+  }
+
+  .add-icon {
+    height: 24px;
+    width: 24px;
+    fill: var(--background-color);
+  }
+
+  .like-container {
+    width: 100%;
+    display: flex;
+    padding: 10px 20px;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  
+
+  .card-circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 360%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    justify-content: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 10px 24px;
+  }
+
+
+  .add-c {
+    background-color: var(--primary-color);
+  }
+
+  .card-bg {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--light-color);
+  }
+
+  .img-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-image {
+    height: 100px;
+    width: 100px;
+  }
+
+  .card-c-info {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    padding: 10px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    color: var(--primary-color);
+  }
+
+  .card-info h1 {
+    font-weight: 600;
+    font-size: .8rem;
+  }
+
+  .info-price {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .info-price h1 {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .info-price h3 {
+    font-size: .8rem;
+    font-weight: 300;
+    text-decoration: line-through;
+  }
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+
+      .deal-wrapper {
+        flex-direction: row;
+      }
+ 
+      .card-template {
+        width: 280px;
+        height: 360px;
+      }
+
+
+}
