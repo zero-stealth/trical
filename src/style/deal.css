@@ -5,13 +5,18 @@
     flex-direction: column;
   }
 
+  .product-wrapper {
+    padding: 30px 10px;
+  }
+  
+
   .deal-wrapper {
     gap: 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .deal-title {
@@ -45,7 +50,7 @@
     height: 24px;
     width: 24px;
     fill: var(--secondary-color);
-  }
+  }   
 
   .add-icon {
     height: 24px;

@@ -1,51 +1,56 @@
 @media screen {
-    
-}
+  .filter-nav {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
 
-.filter-nav {
-border: 2px solid blue;
-padding: 10px;
-display: flex;
-flex-direction: column;
-}
-
-.f-wrapper {
+  .f-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.filter-circle {
-    height: 40px;
-    width: 40px;
+  .filter-circle {
+    height: 35px;
+    width: 35px;
     display: flex;
+    cursor: pointer;
     border-radius: 360%;
     align-items: center;
     justify-content: center;
     background-color: var(--secondary-color);
-}
+  }
 
-.icon-filter {
+  .icon-filter {
     width: 20px;
     height: 20px;
-}
+  }
 
-.icon-f-search {
+  .m-fc {
+    display: flex;
+  }
+
+  .d-fc {
+    display: none;
+  }
+  
+
+  .icon-f-search {
     fill: var(--secondary-color);
   }
 
-.f-input-container {
+  .f-input-container {
     gap: 4px;
     display: flex;
     height: 30px;
-    width: 50%;
+    width: 80%;
     padding: 10px;
     border-radius: 20px;
     align-items: center;
     background-color: var(--background-color);
   }
 
-  
   .search-f {
     width: 100%;
     border: none;
@@ -55,107 +60,64 @@ flex-direction: column;
     background-color: var(--background-color);
   }
 
-.f-categories {
-    gap: 50px;
-    display: flex;
-    font-size:1rem;
-    align-items: center;
-}
-
-.f-category {
-    border: none;
-    outline: none;
-    font-size:1rem;
-    background-color: var(--light-color);
-}
-
-.f-profile {
+  .f-categories {
     display: none;
-}
+  }
 
-.latest {
+  .f-profile {
+    display: none;
+  }
+
+  .latest {
     font-size: 1rem;
     cursor: pointer;
+  }
 }
 
 /* using it as global style for larger devices  */
 @media only screen and (min-width: 48em) {
-    .filter-nav {
-        border: 2px solid blue;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        }
-        
-        .f-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .filter-circle {
-            height: 40px;
-            width: 40px;
-            display: flex;
-            border-radius: 360%;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--secondary-color);
-        }
-        
-        .icon-filter {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .icon-f-search {
-            fill: var(--secondary-color);
-          }
-        
-        .f-input-container {
-            gap: 4px;
-            display: flex;
-            height: 30px;
-            width: 50%;
-            padding: 10px;
-            border-radius: 20px;
-            align-items: center;
-            background-color: var(--background-color);
-          }
-        
-          
-          .search-f {
-            width: 100%;
-            border: none;
-            display: flex;
-            height: inherit;
-            border-radius: 20px;
-            background-color: var(--background-color);
-          }
-        
-        .f-categories {
-            gap: 50px;
-            display: flex;
-            font-size:1rem;
-            align-items: center;
-        }
-        
-        .f-category {
-            border: none;
-            outline: none;
-            font-size:1rem;
-            background-color: var(--light-color);
-        }
 
-        .f-profile {
-            gap: 10px;
-            display: flex;
-            cursor: pointer;
-            align-items: center;
-        }
-        
-        .latest {
-            font-size: 1rem;
-            cursor: pointer;
-        }
+    
+  .filter-circle {
+    height: 40px;
+    width: 40px;
+  }
+
+  .m-fc {
+    display: none;
+  }
+
+  .d-fc {
+    display: flex;
+  }
+  
+  .f-input-container {
+    width: 50%;
+  }
+
+  .f-categories {
+    gap: 50px;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+  }
+
+  .f-category {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background-color: var(--light-color);
+  }
+
+  .f-profile {
+    gap: 10px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .latest {
+    font-size: 1rem;
+    cursor: pointer;
+  }
 }

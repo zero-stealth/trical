@@ -1,14 +1,8 @@
 <script setup>
 import wiring from "../assets/wiring.png";
 import cooker from "../assets/cooker.png";
-import Deal from "../components/deal.vue";
-import macbook from "../assets/macbook.png";
 import addIcon from "../icons/addIcon.vue";
 import favIcon from "../icons/favIcon.vue";
-import note from "../assets/Samsung-Note-20.png";
-import galaxy from "../assets/Samsung-Galaxy.png";
-import chandelier from "../assets/chandeliers.png";
-import cookerGadget from "../assets/cooker-gadget.png";
 
 import { ref, watchEffect } from "vue";
 import { useRouter } from "vue-router";
@@ -19,8 +13,8 @@ const addItem = ref(false);
 const router = useRouter();
 
 const showAll = () => {
-  router.push({ name : 'Search'})
-}
+  router.push({ name: "Search" });
+};
 
 watchEffect(() => {
   addItem.value = cartStore.add;

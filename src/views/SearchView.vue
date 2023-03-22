@@ -2,25 +2,133 @@
 import { useRouter } from "vue-router";
 import { RouterLink } from "vue-router";
 import kakashi from "@/assets/kakashi.jpg";
+import { useCartStore } from "@/stores/cart";
 import cartIcon from "@/icons/cartIcon.vue";
 import searchIcon from "@/icons/searchIcon.vue";
 import filterIcon from "@/icons/filterIcon.vue";
+import wiring from "@/assets/wiring.png";
+import cooker from "@/assets/cooker.png";
+import addIcon from "@/icons/addIcon.vue";
+import favIcon from "@/icons/favIcon.vue";
+import { ref, watchEffect } from "vue";
+
+const cartStore = useCartStore();
+const addItem = ref(false);
 
 const router = useRouter();
 
 const showProfile = () => {
-  router.push({ name : 'Account'})
-}
+  router.push({ name: "Account" });
+};
 
-const filterAll = () => {
+const goHome = () => {
+  router.push({ name: "Home" });
+};
 
-}
+watchEffect(() => {
+  addItem.value = cartStore.add;
+});
 
+const filterAll = () => {};
+
+const data = ref([
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Gadget",
+    productImage: cooker,
+    productName: "Wiring wire",
+    currentPrice: "Ksh 20,000",
+    previousPrice: "Ksh 30,000",
+  },
+  {
+    category: "Gadget",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+  {
+    category: "Cable",
+    productImage: wiring,
+    productName: "4mm cable",
+    currentPrice: "Ksh 30,000",
+    previousPrice: "Ksh 45,000",
+  },
+]);
 </script>
 <template>
   <div class="filter-nav">
     <div class="f-wrapper">
-      <div class="filter-circle" @click="filterAll()">
+      <div class="filter-circle d-fc" @click="goHome()">
         <filterIcon class="icon-filter" />
       </div>
       <div class="f-input-container">
@@ -33,14 +141,12 @@ const filterAll = () => {
         />
       </div>
       <div class="f-categories">
-     <select name="" id="" class="f-category">
-        <option value="">category</option>
-     </select>
-     <div class="latest" @click="latest()">
-        latest products
-     </div>
+        <select name="" id="" class="f-category">
+          <option value="">category</option>
+        </select>
+        <div class="latest" @click="latest()">latest products</div>
       </div>
-      <div class="f-profile " @click="showProfile()">
+      <div class="f-profile" @click="showProfile()">
         <img :src="kakashi" alt="kakashi" class="d-profile-img" />
         <span>Kakashi</span>
       </div>
@@ -48,13 +154,48 @@ const filterAll = () => {
         <cartIcon class="icon-d-cart" />
         <span>Cart</span>
       </RouterLink>
-      <RouterLink class="d-notification" :to="{ name: 'Notification' }">
-        <notification class="icon-d-notification" />
-      </RouterLink>
+      <div class="filter-circle m-fc" @click="filterAll()">
+        <filterIcon class="icon-filter" />
+      </div>
+    </div>
+  </div>
+  <div class="product-wrapper">
+    <div class="deal-wrapper">
+      <div
+        class="card-template"
+        v-for="(
+          { productImage, productName, currentPrice, previousPrice }, index
+        ) in data"
+        :key="index"
+      >
+        <div class="card-bg">
+          <div class="like-container">
+            <div class="card-circle" @click="cartStore.toggleLike()">
+              <favIcon class="fav-icon" />
+            </div>
+          </div>
+          <div class="img-component">
+            <img :src="productImage" alt="" class="product-image" />
+          </div>
+        </div>
+        <div class="card-c-info">
+          <div class="card-info">
+            <div class="info-price">
+              <h1>{{ currentPrice }}</h1>
+              <h3>{{ previousPrice }}</h3>
+            </div>
+            <h1>{{ productName }}</h1>
+          </div>
+          <div class="card-circle add-c">
+            <addIcon class="add-icon" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <style>
 @import "@/style/desktopnav.css";
 @import "@/style/search.css";
+@import "@/style/deal.css";
 </style>
