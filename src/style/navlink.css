@@ -1,0 +1,51 @@
+@media screen {
+    
+.link-circle {
+    height: 40px;
+    width: 40px;
+    border: 2px solid var(--secondary-color);
+}
+
+.icon-back {
+    height: 20px;
+    width: 20px;
+    transform: rotate(180deg);
+    fill: var(--secondary-color);
+}
+
+.icon-link-cart {
+    height: 20px;
+    width: 20px;
+    fill: var( --secondary-color);
+}
+
+.navlink-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link-circle {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 360%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var( --secondary-color);
+}
+
+.link-info {
+    text-transform: capitalize;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+}
+
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  
+}

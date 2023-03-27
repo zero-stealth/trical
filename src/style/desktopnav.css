@@ -1,9 +1,27 @@
 @media screen {
-  .d-nav {
+  .account-controller {
+    gap: 20px;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
   }
+  
+  .d-nav {
+    display: none;
+  }
+
+  .account-nav {
+    gap: 50px;
+    display: flex;
+    border-radius: none;
+  }
+
+  .acc-nav {
+    background: none;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
 
   .logo {
     display: none;
@@ -62,6 +80,23 @@
     fill: var(--text-color);
   }
 
+  .profile-avv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .icon-acc-back {
+    height: 24px;
+    cursor: pointer;
+    transform: rotate(180deg);
+    fill: var(--light-color);
+  }
+
   .d-cart span {
     color: var(--text-color);
   }
@@ -81,12 +116,33 @@
     width: 25px;
     fill: var(--background-color);
   }
+
+  .acc-pc {
+    display: none;
+  }
+
+  .acc-mps {
+    display: flex;
+    height: 100%;
+    padding-bottom: 10px;
+  }
 }
 
 /* using it as global style for larger devices  */
 @media only screen and (min-width: 48em) {
+  .account-controller {
+    padding: 20px;
+  }
+
+  .d-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .logo {
     display: flex;
+    cursor: pointer;
   }
 
   .logo h1 {
@@ -94,9 +150,13 @@
     color: var(--primary-color);
   }
 
+  .profile-avv {
+    height: 40%;
+    border-radius: 12px;
+  }
+
   .d-wrapper {
     width: 50%;
-    justify-content: space-between;
   }
 
   .d-input-container {
@@ -122,6 +182,7 @@
   .d-cart {
     gap: 10px;
     display: flex;
+    cursor: pointer;
     align-items: center;
   }
 
@@ -131,5 +192,59 @@
 
   .d-notification {
     display: none;
+  }
+
+  .acc-mps {
+    display: none;
+  }
+
+  .acc-pc {
+    gap: 30px;
+    height: 50%;
+    display: flex;
+
+  }
+
+  .acc-detail {
+    flex: 30%;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: var(--drop-shadow);
+  }
+
+  .acc-settings {
+    gap: 15px;
+    flex: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .acc-settings h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  .user-details {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details-u {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details-u h3 {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .details-u span {
+    color: var(--icon-color);
+    font-weight: 300;
+    font-size: 1rem;
   }
 }

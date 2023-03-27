@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
 const AuthStore = useAuthStore();
@@ -8,16 +8,12 @@ const password = ref('');
 const email = ref('');
 const errorMsg = ref();
 
-const submit = () => {
-  if (username.value.length < 4 ) {
-    errorMsg.value = 'username must be at least 4 characters long'
-  } else if (password.value.length < 5) {
-    errorMsg.value = 'password must be at least 5 characters long'
-  } else {
-    reset();
-  }
 
-}
+const data = JSON.stringify({
+  "username": username,
+  "email": email,
+  "password": password,
+})
 
 const reset = () => {
   username.value = '';
@@ -26,6 +22,38 @@ const reset = () => {
 
 };
 
+const submit = () => {
+
+  
+
+onMounted(async () => {
+    const options = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: "http://127.0.0.1:8080/api/account/signin.php",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: data,
+    };
+
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(JSON.stringify(response));
+        AuthStore.getUsername(response.account_name)
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
+
+
+  AuthStore.toggleisAuthenticated();
+  router.push({ name: "Home" });
+  reset();
+};
 
 </script>
 <template>

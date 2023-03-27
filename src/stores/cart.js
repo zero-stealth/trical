@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 export const useCartStore = defineStore('cart', () => {
   const isliked = ref(false);
   const add = ref(false);
+  const cartItem = ref([])
 
   //change state
   function toggleLike() {
@@ -15,5 +16,5 @@ export const useCartStore = defineStore('cart', () => {
     add.value = !add.value 
   }
 
-  return { isliked, add, toggleLike, toggleAdd }
+  return { isliked, add, toggleLike, cartItem, toggleAdd }
 })

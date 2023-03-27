@@ -1,0 +1,76 @@
+@media screen {
+  .contain-settings {
+    height: 100%;
+    padding: 20px;
+  }
+
+  .settings-desk {
+    display: none;
+  }
+
+  .settings-mobile {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .setting-nav {
+    gap: 30%;
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+  }
+
+  .setting-nav h2 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .icon-s-b {
+    height: 20px;
+    width: 20px;
+    fill: var(--text-color);
+  }
+
+  .back-s-nav {
+    transform: rotate(180deg);
+    fill: var(--secondary-color);
+  }
+
+  .setting-main-nav {
+    gap: 20px;
+    height: 100%;
+    display: flex;
+    padding-top:50px;
+    flex-direction: column;
+  }
+
+  .s-n-container {
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-color);
+  }
+
+  .s-n-container h4 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .settings-desk {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .settings-desk h1 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+}

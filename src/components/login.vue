@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
 import axios from "axios";
+import { ref, onMounted } from "vue";
 // import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
@@ -10,18 +10,49 @@ const username = ref("");
 const password = ref("");
 const errorMsg = ref("");
 
-const submit = () => {
-  AuthStore.toggleisAuthenticated();
-  // router.push({ name: "Home" });
-  reset();
-};
+const data = JSON.stringify({
+  "username": username,
+  "password": password,
+});
 
 const reset = () => {
   username.value = "";
   password.value = "";
 };
 
-const resetPassword = () => {};
+const submit = () => {
+
+  
+
+onMounted(async () => {
+    const options = {
+      method: "POST",
+      maxBodyLength: Infinity,
+      url: "http://127.0.0.1:8080/api/account/login.php",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: data,
+    };
+
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(JSON.stringify(response));
+        AuthStore.getUsername(response.account_name)
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  });
+
+
+  AuthStore.toggleisAuthenticated();
+  // router.push({ name: "Home" });
+  reset();
+};
+
 </script>
 <template>
   <div class="auth-container">

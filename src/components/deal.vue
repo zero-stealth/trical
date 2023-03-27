@@ -7,7 +7,9 @@ import favIcon from "../icons/favIcon.vue";
 import { ref, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart";
+import { useProductStore } from "@/stores/product";
 
+const productStore = useProductStore();
 const cartStore = useCartStore();
 const addItem = ref(false);
 const router = useRouter();
@@ -20,8 +22,14 @@ watchEffect(() => {
   addItem.value = cartStore.add;
 });
 
+const goDetail = (id) => {
+  productStore.productID = id.value;
+  router.push({ name : "Details"})
+}
+
 const data = ref([
   {
+    id: '1',
     category: "Cable",
     productImage: wiring,
     productName: "4mm cable",
@@ -29,6 +37,7 @@ const data = ref([
     previousPrice: "Ksh 45,000",
   },
   {
+    id: '2',
     category: "Gadget",
     productImage: cooker,
     productName: "Wiring wire",
@@ -36,6 +45,7 @@ const data = ref([
     previousPrice: "Ksh 30,000",
   },
   {
+    id: '3',
     category: "Gadget",
     productImage: wiring,
     productName: "4mm cable",
@@ -43,6 +53,7 @@ const data = ref([
     previousPrice: "Ksh 45,000",
   },
   {
+    id: '4',
     category: "Cable",
     productImage: wiring,
     productName: "4mm cable",
@@ -61,7 +72,7 @@ const data = ref([
       <div
         class="card-template"
         v-for="(
-          { productImage, productName, currentPrice, previousPrice }, index
+          { id, productImage, productName, currentPrice, previousPrice }, index
         ) in data"
         :key="index"
       >
@@ -83,7 +94,7 @@ const data = ref([
             </div>
             <h1>{{ productName }}</h1>
           </div>
-          <div class="card-circle add-c">
+          <div class="card-circle add-c" @click="goDetail(id)">
             <addIcon class="add-icon" />
           </div>
         </div>

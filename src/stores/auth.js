@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 export const useAuthStore = defineStore('auth', () => {
 
   const isAuthenticated = ref(false);
+  const Username = ref(null);
   const authPage = ref(false);
   const resetPage = ref(false);
   const timeOut = ref(3000);
@@ -33,12 +34,16 @@ export const useAuthStore = defineStore('auth', () => {
     resetPage.value = !resetPage.value;
   }
 
+  const getUsername = (user) => {
+    Username.value = user.value
+  }
+
   //change state
   const toggleAuthPage = () => {
     authPage.value = !authPage.value;
   }
 
   return {
-    timeOut, toggleisAuthenticated, toggleResetPage, isAuthenticated, toggleAuthPage, authPage, resetPage
+    timeOut, toggleisAuthenticated, getUsername, toggleResetPage, isAuthenticated, toggleAuthPage, authPage, resetPage
   }
 })

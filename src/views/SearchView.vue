@@ -10,6 +10,7 @@ import wiring from "@/assets/wiring.png";
 import cooker from "@/assets/cooker.png";
 import addIcon from "@/icons/addIcon.vue";
 import favIcon from "@/icons/favIcon.vue";
+import MobileNav from '@/components/mobileNav.vue';
 import { ref, watchEffect } from "vue";
 
 const cartStore = useCartStore();
@@ -193,6 +194,8 @@ const data = ref([
       </div>
     </div>
   </div>
+    <MobileNav/>    
+
 </template>
 <style>
 @import "@/style/desktopnav.css";
