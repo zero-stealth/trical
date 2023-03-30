@@ -1,9 +1,9 @@
 <script setup>
+import { computed } from 'vue'
 import DesktopNav from "../components/desktopNav.vue";
 import NavLink from "../components/navlink.vue";
 import CardIcon from "../icons/cardIcon.vue";
 import cooker from "@/assets/cooker.png";
-import { computed } from 'vue'
 import { useProductStore } from "@/stores/product";
 
 const checkout = () => {};

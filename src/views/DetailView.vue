@@ -97,7 +97,7 @@ const buy = (name, price ) => {
             <button class="btn-p">
               <cartIcon class="cart-pd" /> add to cart
             </button>
-            <button class="btn-p" @click=buy(productName, currentPrice )>buy now</button>
+            <button class="btn-p" @click="buy(productName, currentPrice )">buy now</button>
           </div>
         </div>
       </div>

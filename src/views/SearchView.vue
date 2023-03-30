@@ -10,11 +10,16 @@ import wiring from "@/assets/wiring.png";
 import cooker from "@/assets/cooker.png";
 import addIcon from "@/icons/addIcon.vue";
 import favIcon from "@/icons/favIcon.vue";
-import MobileNav from '@/components/mobileNav.vue';
-import { ref, watchEffect } from "vue";
+import MobileNav from "@/components/mobileNav.vue";
+import { useProductStore } from "@/stores/product";
+
+import { ref, watchEffect , computed} from "vue";
 
 const cartStore = useCartStore();
+const productStore = useProductStore();
+
 const addItem = ref(false);
+const search = ref(null);
 
 const router = useRouter();
 
@@ -30,101 +35,9 @@ watchEffect(() => {
   addItem.value = cartStore.add;
 });
 
-const filterAll = () => {};
-
-const data = ref([
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Gadget",
-    productImage: cooker,
-    productName: "Wiring wire",
-    currentPrice: "Ksh 20,000",
-    previousPrice: "Ksh 30,000",
-  },
-  {
-    category: "Gadget",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-]);
+const searchData = computed(() => {
+      return productStore.productDetail.filter((d) => d.productName.includes(search.value));
+    });
 </script>
 <template>
   <div class="filter-nav">
@@ -166,7 +79,7 @@ const data = ref([
         class="card-template"
         v-for="(
           { productImage, productName, currentPrice, previousPrice }, index
-        ) in data"
+        ) in searchData"
         :key="index"
       >
         <div class="card-bg">
@@ -194,8 +107,7 @@ const data = ref([
       </div>
     </div>
   </div>
-    <MobileNav/>    
-
+  <MobileNav />
 </template>
 <style>
 @import "@/style/desktopnav.css";
