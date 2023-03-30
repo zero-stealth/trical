@@ -10,6 +10,11 @@ const router = createRouter({
       component: SplashView
     },
     {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('@/views/AdminView.vue')
+    },
+    {
       path: '/welcome',
       name: 'Welcome',
       component: () => import('@/views/WelcomeView.vue')

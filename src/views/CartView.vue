@@ -3,8 +3,20 @@ import DesktopNav from "../components/desktopNav.vue";
 import NavLink from "../components/navlink.vue";
 import CardIcon from "../icons/cardIcon.vue";
 import cooker from "@/assets/cooker.png";
+import { computed } from 'vue'
+import { useProductStore } from "@/stores/product";
 
 const checkout = () => {};
+const productStore = useProductStore();
+
+const tax = 100
+const data = productStore.productDetail
+console.log(productStore.productID)
+
+const cartData = computed(() => {
+  return data.filter((d) => d.id.includes(productStore.productID));
+});
+
 </script>
 <template>
   <div class="cart-container">
@@ -35,15 +47,19 @@ const checkout = () => {};
       </div>
       <div class="layout-second">
         <h2>Cart Item</h2>
-        <div class="lay-cart second-cart">
+        <div class="lay-cart second-cart"
+        v-for="(
+          {  productImage, productName, currentPrice }, index
+        ) in cartData"
+        :key="index">
           <div class="card-cart-s">
             <div class="card-info">
-              <h4>smart p</h4>
-              <span>quantity 1</span>
-              <span>price</span>
+              <h4>{{productName}}</h4>
+              <span> 1</span>
+              <span>{{currentPrice}}</span>
             </div>
             <div class="cart-card-img">
-              <img :src="cooker" alt="cooker" class="img-cart" />
+              <img :src="productImage" :alt="productName" class="img-cart" />
             </div>
           </div>
         </div>
@@ -51,11 +67,11 @@ const checkout = () => {};
           <div class="item-cost">
             <div class="item-x">
               <h3>Tax</h3>
-              <h3>Ksh 111</h3>
+            <h3>{{ tax }}</h3>
             </div>
             <div class="item-x">
               <h3>Total</h3>
-              <h3>Ksh 111</h3>
+              <h3>ksh {{ currentPrice}}</h3>
             </div>
           </div>
           <button type="submit" class="btn-cart-a" @click="checkout()">checkout</button>

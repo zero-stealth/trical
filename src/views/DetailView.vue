@@ -1,10 +1,11 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, computed } from "vue";
 import cooker from "@/assets/cooker.png";
 import addIcon from "@/icons/addIcon.vue";
 import favIcon from "@/icons/favIcon.vue";
 import cartIcon from "@/icons/cartIcon.vue";
 import { useCartStore } from "@/stores/cart";
+import minusIcon from "@/icons/minusIcon.vue";
 import NavLink from "@/components/navlink.vue";
 import { useProductStore } from "@/stores/product";
 import DesktopNav from "@/components/desktopNav.vue";
@@ -12,6 +13,7 @@ import DesktopNav from "@/components/desktopNav.vue";
 const productStore = useProductStore();
 const cartStore = useCartStore();
 const noProduct = ref(1);
+const phoneNumber = ref('0759636964');
 
 const add = () => {
   noProduct.value++;
@@ -29,6 +31,24 @@ const addCart = (id) => {
    id.value.push(cartStore.cartItem)
 };
 
+const data = productStore.productDetail
+
+const detailData = computed(() => {
+  return data.filter((d) => d.id.includes(1));
+});
+
+
+const buy = (name, price ) => {
+    window.open(
+      `https://wa.me/${phoneNumber.value}?text=
+      *product name*: ${name}
+      *mpesa number*: ${phoneNumber.value}
+      *product price*: ${price}`,
+      "_blank");
+
+}
+
+
 </script>
 <template>
   <div class="d-contain">
@@ -40,21 +60,28 @@ const addCart = (id) => {
       <div class="d-img">
         <img :src="cooker" alt="cooker" class="img-detail" />
       </div>
-      <div class="d-info-p">
-        <div class="d-header">
-          <h1>pppp</h1>
+      <div class="d-info-p"        v-for="(
+          { id, productImage, productinfo, category, productName, currentPrice, previousPrice }, index
+        ) in detailData"
+        :key="index">
+        <div class="d-header" >
+          <h1>{{ productName }}</h1>
           <favIcon class="fav-icon-d"  @click="cartStore.toggleLike()" />
         </div>
-        <div class="d-info">product-detail</div>
+        <div class="d-info">
+          <span>{{ category }}</span>
+          {{ productinfo}}</div>
         <div class="product-detail-p">
           <div class="product-iv">
             <div class="p-p">
-              <h1>ksh 40000</h1>
+              <h1>{{ currentPrice }}</h1>
             </div>
             <div class="no-of-product">
-              <div class="min-p" @click="minus()">-</div>
+              <div class="min-p" @click="minus()">
+                <minusIcon class="add-icon-detail" />
+              </div>
               <div class="no-p">
-                {{ noProduct }}
+                {{ noProduct }} 
               </div>
               <div class="min-p add" @click="add()">
                 <addIcon class="add-icon-detail" />
@@ -70,7 +97,7 @@ const addCart = (id) => {
             <button class="btn-p">
               <cartIcon class="cart-pd" /> add to cart
             </button>
-            <button class="btn-p">buy now</button>
+            <button class="btn-p" @click=buy(productName, currentPrice )>buy now</button>
           </div>
         </div>
       </div>

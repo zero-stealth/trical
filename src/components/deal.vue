@@ -9,6 +9,7 @@ import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart";
 import { useProductStore } from "@/stores/product";
 
+
 const productStore = useProductStore();
 const cartStore = useCartStore();
 const addItem = ref(false);
@@ -23,44 +24,13 @@ watchEffect(() => {
 });
 
 const goDetail = (id) => {
-  productStore.productID = id.value;
+  productStore.productID = id;
   router.push({ name : "Details"})
 }
 
-const data = ref([
-  {
-    id: '1',
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    id: '2',
-    category: "Gadget",
-    productImage: cooker,
-    productName: "Wiring wire",
-    currentPrice: "Ksh 20,000",
-    previousPrice: "Ksh 30,000",
-  },
-  {
-    id: '3',
-    category: "Gadget",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-  {
-    id: '4',
-    category: "Cable",
-    productImage: wiring,
-    productName: "4mm cable",
-    currentPrice: "Ksh 30,000",
-    previousPrice: "Ksh 45,000",
-  },
-]);
+const data = productStore.productDetail
+console.log(data.value)
+
 </script>
 <template>
   <div class="deal-container">

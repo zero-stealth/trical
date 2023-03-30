@@ -1,9 +1,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import BackIcon from "@/icons/backIcon.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
-
+const AuthStore = useAuthStore();
 const goAccount = () => {
   router.push({ name: "Account" });
 };
@@ -14,6 +15,8 @@ const goHome = () => {
 
 const logout = () => {
   router.push({ name: "Welcome" });
+  AuthStore.toggleisAuthenticated();
+  AuthStore.getUsername(null);
 };
 </script>
 <template>

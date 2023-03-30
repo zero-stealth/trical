@@ -1,19 +1,16 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import axios from "axios";
+import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
 const AuthStore = useAuthStore();
-const username = ref('');
-const password = ref('');
-const email = ref('');
+const username = ref();
+const password = ref();
+const email = ref();
 const errorMsg = ref();
 
 
-const data = JSON.stringify({
-  "username": username,
-  "email": email,
-  "password": password,
-})
+
 
 const reset = () => {
   username.value = '';
@@ -23,36 +20,46 @@ const reset = () => {
 };
 
 const submit = () => {
-
-  
-
-onMounted(async () => {
+  if (username.value != "" && password.value != "" & email.value != "") {
     const options = {
       method: "POST",
-      maxBodyLength: Infinity,
-      url: "http://127.0.0.1:8080/api/account/signin.php",
+      url: "http://127.0.0.1:8080/api/account/signIn.php",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
-      data: data,
+      data: { username: username.value, password: password.value },
     };
 
-    await axios
+    axios
       .request(options)
       .then(function (response) {
-        console.log(JSON.stringify(response));
-        AuthStore.getUsername(response.account_name)
+        console.log(response.data);
+        switch (response.data.message) {
+          case "account created":
+            AuthStore.getUsername(response.data.account_name);
+            // console.log(response.data.account_name);
+        AuthStore.toggleisAuthenticated();
+        // router.push({ name: "Home" });
+
+            break;
+          case "account not created":
+            errorMsg.value = response.data.message;
+            // console.log(errorMsg.value);
+            break;
+          default:
+          errorMsg.value = response.data
+            break;
+        }
       })
       .catch(function (error) {
         console.error(error);
+        errorMsg.value = error;
       });
-  });
 
-
-  AuthStore.toggleisAuthenticated();
-  router.push({ name: "Home" });
-  reset();
+    reset();
+  } else {
+    errorMsg.value = "Write something dummy"
+  }
 };
 
 </script>
@@ -69,7 +76,7 @@ onMounted(async () => {
           <input
             type="text"
             class="auth-input"
-            placeholder="kakashi uchiha"
+            placeholder="kakashi (4 character long)"
             v-model="username"
           />
         </div>
@@ -97,7 +104,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="btn-auth">
-        <button type="submit" class="btn-auth-c"  @keyup.enter="submit">Create an account</button>
+        <button type="submit" class="btn-auth-c"  @keyup.enter="submit()">Create an account</button>
         <span>Already have an account?<a href="#" @click="AuthStore.toggleAuthPage()">Login</a></span>
       </div>
     </form>

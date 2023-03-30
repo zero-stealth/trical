@@ -1,19 +1,14 @@
 <script setup>
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 // import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
 const AuthStore = useAuthStore();
 // const router = useRouter();
-const username = ref("");
-const password = ref("");
-const errorMsg = ref("");
-
-const data = JSON.stringify({
-  "username": username,
-  "password": password,
-});
+const username = ref();
+const password = ref();
+const errorMsg = ref();
 
 const reset = () => {
   username.value = "";
@@ -21,42 +16,50 @@ const reset = () => {
 };
 
 const submit = () => {
-
-  
-
-onMounted(async () => {
+  if (username.value != "" && password.value != "") {
     const options = {
       method: "POST",
-      maxBodyLength: Infinity,
       url: "http://127.0.0.1:8080/api/account/login.php",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
-      data: data,
+      data: { username: username.value, password: password.value },
     };
 
-    await axios
+    axios
       .request(options)
       .then(function (response) {
-        console.log(JSON.stringify(response));
-        AuthStore.getUsername(response.account_name)
+        console.log(response.data);
+        switch (response.data.message) {
+          case "login successfully":
+            AuthStore.getUsername(response.data.account_name);
+            // console.log(response.data.account_name);
+        AuthStore.toggleisAuthenticated();
+        // router.push({ name: "Home" });
+
+            break;
+          case "login failed":
+            errorMsg.value = response.data.message;
+            // console.log(errorMsg.value);
+            break;
+          default:
+            break;
+        }
       })
       .catch(function (error) {
         console.error(error);
+        errorMsg.value = error;
       });
-  });
 
-
-  AuthStore.toggleisAuthenticated();
-  // router.push({ name: "Home" });
-  reset();
+    reset();
+  } else {
+    errorMsg.value = "Write something dummy"
+  }
 };
-
 </script>
 <template>
   <div class="auth-container">
-    <form @submit.prevent="submit" class="auth-form">
+    <form @submit.prevent="submit()" class="auth-form">
       <div class="auth-info">
         <h1>Login,</h1>
         <span>Welcome back</span>
@@ -67,7 +70,7 @@ onMounted(async () => {
           <input
             type="text"
             class="auth-input"
-            placeholder="kakashi uchiha"
+            placeholder="kakashi (4 character long)"
             v-model="username"
           />
         </div>
@@ -81,14 +84,16 @@ onMounted(async () => {
           />
         </div>
         <div class="forgot-p">
-          <a href="#" @click="AuthStore.toggleResetPage()"><span>Forgot password</span></a>
+          <a href="#" @click="AuthStore.toggleResetPage()"
+            ><span>Forgot password</span></a
+          >
         </div>
         <div class="error-msg">
           <span>{{ errorMsg }}</span>
         </div>
       </div>
       <div class="btn-auth">
-        <button type="submit" class="btn-auth-c" @keyup.enter="submit">
+        <button type="submit" class="btn-auth-c" @keyup.enter="submit()">
           Login
         </button>
         <span

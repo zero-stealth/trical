@@ -5,6 +5,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isAuthenticated = ref(false);
   const Username = ref(null);
+  const userId = ref(null);
   const authPage = ref(false);
   const resetPage = ref(false);
   const timeOut = ref(3000);
@@ -34,8 +35,13 @@ export const useAuthStore = defineStore('auth', () => {
     resetPage.value = !resetPage.value;
   }
 
+  const getUserID = (ID) => {
+    userId.value = ID;
+  }
+
   const getUsername = (user) => {
-    Username.value = user.value
+    Username.value = user
+    // console.log(Username.value)
   }
 
   //change state
@@ -44,6 +50,6 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   return {
-    timeOut, toggleisAuthenticated, getUsername, toggleResetPage, isAuthenticated, toggleAuthPage, authPage, resetPage
+    timeOut, Username, userId, getUserID, toggleisAuthenticated, getUsername, toggleResetPage, isAuthenticated, toggleAuthPage, authPage, resetPage
   }
 })

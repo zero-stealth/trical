@@ -1,17 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import axios from "axios";
+import { ref, computed } from "vue";
 import show1 from "@/assets/show1.png";
 import { useRouter } from "vue-router";
 import { RouterLink } from "vue-router";
 import kakashi from "../assets/kakashi.jpg";
 import cartIcon from "../icons/cartIcon.vue";
 import backIcon from "../icons/backIcon.vue";
+import { useAuthStore } from "@/stores/auth";
 import searchIcon from "../icons/searchIcon.vue";
 import notification from "../icons/notification.vue";
 import AccountDetail from "../components/accountDetail.vue";
 
 let images = ref([]);
 const router = useRouter();
+const AuthStore = useAuthStore();
 
 const showProfile = () => {
   router.push({ name: "Account" });
@@ -23,10 +26,47 @@ const goHome = () => {
 
 const welcome = () => {
   router.push({ name: "Welcome" });
+  AuthStore.toggleisAuthenticated();
+  AuthStore.getUsername(null);
 };
 
 const goSettings = () => {
   router.push({ name: "Settings" });
+};
+
+const placeholderEmail = computed(() => {
+  return AuthStore.Username + "@gmail.com";
+});
+
+const deleteAccount = () => {
+  const options = {
+    method: "GET",
+    url: "http://127.0.0.1:8080/api/account/delete.php",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: { id: AuthStore.userId },
+  };
+
+  console.log(AuthStore.userId)
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+      switch (response.data) {
+        case "Account deleted successfully":
+          router.push({ name: "Welcome" });
+          AuthStore.toggleisAuthenticated();
+          AuthStore.getUsername(null);
+          break;
+          case "Account not deleted successfully":
+        default:
+          break;
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 };
 </script>
 <template>
@@ -50,7 +90,7 @@ const goSettings = () => {
         </div>
         <div class="d-profile" @click="showProfile()">
           <img :src="kakashi" alt="kakashi" class="d-profile-img" />
-          <span>Kakashi</span>
+          <span>{{ AuthStore.Username }}</span>
         </div>
         <RouterLink class="d-cart" :to="{ name: 'Cart' }">
           <cartIcon class="icon-d-cart" />
@@ -79,20 +119,23 @@ const goSettings = () => {
         <div class="user-details">
           <div class="details-u">
             <h3>Username</h3>
-            <span>name</span>
+            <span>{{ AuthStore.Username }}</span>
           </div>
           <div class="details-u">
-            <h3>Phone</h3>
-            <span>name</span>
+            <h3>Email</h3>
+            <span>{{ placeholderEmail }}</span>
           </div>
           <div class="details-u">
             <h3>Password</h3>
-            <span>name</span>
+            <span>********</span>
           </div>
           <div class="details-u">
             <h3>Payment Details</h3>
-            <span>name</span>
+            <span>Mpesa</span>
           </div>
+          <span class="acc-delete" @click="deleteAccount()">
+            delete account</span
+          >
         </div>
       </div>
     </div>

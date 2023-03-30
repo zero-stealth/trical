@@ -27,6 +27,16 @@
     border: 1px solid var(--icon-color);
 }
 
+.error-msg {
+    padding: 2px;
+    display: flex;
+    font-size: .7rem;
+    align-items: center ;
+    text-align: center;
+    justify-content: center;
+    color: var(--secondary-color);
+  }
+
 .btn-acc-d {
     padding: 15px;
     cursor: pointer;
